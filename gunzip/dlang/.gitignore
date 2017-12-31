@@ -1,0 +1,9 @@
+.dub
+docs.json
+__dummy.html
+docs/
+gunzip-benchmark*
+*.exe
+*.o
+*.obj
+*.lst

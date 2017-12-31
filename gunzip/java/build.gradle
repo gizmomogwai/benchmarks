@@ -1,0 +1,11 @@
+apply plugin: 'java'
+sourceCompatibility = 1.8
+apply plugin: 'java'
+
+task(run, dependsOn: 'classes', type: JavaExec) {
+    main = 'GunzipBenchmark'
+    classpath = sourceSets.main.runtimeClasspath
+    args '../out/nist/2011.json.gz'
+}
+
+defaultTasks 'run'

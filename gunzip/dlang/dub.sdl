@@ -1,0 +1,5 @@
+name "gunzip-benchmark"
+description "Benchmark for the builtin UnCompressor"
+authors "Christian Köstlin"
+copyright "Copyright © 2017, Christian Köstlin"
+license "MIT"
