@@ -10,7 +10,7 @@ public class GunzipBenchmark {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         copy(in, out);
         long endTime = System.currentTimeMillis();
-        System.out.println(String.format("Java: Decompressing took %sms to %s bytes", (endTime - startTime), out.toByteArray().length));
+        System.out.println(String.format("Java: Decompressing took %s ms to %s bytes", (endTime - startTime), out.toByteArray().length));
     }
 
     private static void copy(InputStream in, ByteArrayOutputStream out) throws Exception {
