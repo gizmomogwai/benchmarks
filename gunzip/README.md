@@ -1,0 +1,6 @@
+- Dlang: Decompressing took 911 ms to 199202110 bytes
+- Dlang: Decompressing took 879 ms to 199202110 bytes
+- Java: Decompressing took 633 ms to 199202110 bytes
+- Ruby: Decompressing took 356 ms to 199202110 bytes
+- Python: Decompressing took 599 ms to 199202110 bytes
+- C: Decompressing took 292 ms to 199202110 bytes

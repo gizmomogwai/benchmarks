@@ -71,7 +71,7 @@ int main(int argc, char** args) {
     timersub(&endTime, &startTime, &delta);
     ms = delta.tv_sec * 1000 + delta.tv_usec / 1000;
 
-    printf("C: Decompressing took %ld ms to %ld bytes\n", ms, buffer_total(&uncompressed));
+    printf("- C: Decompressing took %ld ms to %ld bytes\n", ms, buffer_total(&uncompressed));
   }
 
   return 0;

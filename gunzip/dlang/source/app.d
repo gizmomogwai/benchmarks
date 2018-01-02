@@ -14,6 +14,6 @@ int main(string[] args)
     auto res = appender!(string);
     res.put(cast(string)uncompress.uncompress(bytes));
     res.put(cast(string)uncompress.flush);
-    "Dlang: Decompressing took %s ms to %s bytes".format(sw.peek.total!("msecs"), res.data.length).writeln;
+    "- Dlang: Decompressing took %s ms to %s bytes".format(sw.peek.total!("msecs"), res.data.length).writeln;
     return 0;
 }
