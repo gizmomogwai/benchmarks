@@ -2,10 +2,12 @@ current_dir := $(shell pwd)
 run: out/nist/2011.json.gz
 	cd dlang && dub --quiet clean && dub run --quiet --build=release --compiler=ldc2
 	cd dlang && dub --quiet clean && dub run --quiet --build=release-nobounds --compiler=ldc2
+	cd dlang-iopipe && dub --quiet clean && dub run --quiet --build=release --compiler=ldc2
+	cd dlang-iopipe && dub --quiet clean && dub run --quiet --build=release-nobounds --compiler=ldc2
 	cd $(current_dir) && cd java && ./gradlew --quiet
 	cd $(current_dir) && cd ruby && ./gunzip_benchmark.rb
 	cd $(current_dir) && cd python && ./gunzip_benchmark.py
-	cd $(current_dir) && cd c && make && ./gunzip_benchmark
+	cd $(current_dir) && cd c && make clean gunzip_benchmark && ./gunzip_benchmark
 
 out/nist/2011.json.gz:
 	mkdir -p out/nist

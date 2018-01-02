@@ -1,6 +1,8 @@
-- Dlang: Decompressing took 911 ms to 199202110 bytes
-- Dlang: Decompressing took 879 ms to 199202110 bytes
-- Java: Decompressing took 633 ms to 199202110 bytes
-- Ruby: Decompressing took 356 ms to 199202110 bytes
-- Python: Decompressing took 599 ms to 199202110 bytes
-- C: Decompressing took 292 ms to 199202110 bytes
+- Dlang(boundscheck): Decompressing took 770 ms to 199202110 bytes
+- Dlang(noboundscheck): Decompressing took 782 ms to 199202110 bytes
+- Dlang-iopipe(boundscheck): Decompressing took 638 ms to 199202110 bytes
+- Dlang-iopipe(noboundscheck): Decompressing took 629 ms to 199202110 bytes
+- Java: Decompressing took 583 ms to 199202110 bytes
+- Ruby: Decompressing took 393 ms to 199202110 bytes
+- Python: Decompressing took 590 ms to 199202110 bytes
+- C: Decompressing took 256 ms to 199202110 bytes

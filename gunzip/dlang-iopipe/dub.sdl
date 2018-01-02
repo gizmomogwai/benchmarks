@@ -1,0 +1,6 @@
+name "dlang-iopipe"
+description "gunzip with iopipe"
+authors "Christian Köstlin"
+copyright "Copyright © 2018, Christian Köstlin"
+license "MIT"
+dependency "iopipe" version="~>0.0.2"

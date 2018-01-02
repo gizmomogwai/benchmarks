@@ -1,3 +1,14 @@
+string boundsCheck()
+{
+    version (D_NoBoundsChecks)
+    {
+        return "noboundscheck";
+    }
+    else
+    {
+        return "boundscheck";
+    }
+}
 
 int main(string[] args)
 {
@@ -9,11 +20,13 @@ int main(string[] args)
     import std.array;
 
     auto sw = StopWatch(AutoStart.yes);
-    auto bytes = cast(ubyte[])read("../out/nist/2011.json.gz");
+    auto bytes = cast(ubyte[]) read("../out/nist/2011.json.gz");
     auto uncompress = new UnCompress;
     auto res = appender!(string);
-    res.put(cast(string)uncompress.uncompress(bytes));
-    res.put(cast(string)uncompress.flush);
-    "- Dlang: Decompressing took %s ms to %s bytes".format(sw.peek.total!("msecs"), res.data.length).writeln;
+    res.put(cast(string) uncompress.uncompress(bytes));
+    res.put(cast(string) uncompress.flush);
+
+    "- Dlang(%s): Decompressing took %s ms to %s bytes".format(boundsCheck(),
+            sw.peek.total!("msecs"), res.data.length).writeln;
     return 0;
 }

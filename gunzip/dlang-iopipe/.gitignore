@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+dlang-iopipe.so
+dlang-iopipe.dylib
+dlang-iopipe.dll
+dlang-iopipe.a
+dlang-iopipe.lib
+dlang-iopipe-test-*
+*.exe
+*.o
+*.obj
+*.lst
+dlang-iopipe
