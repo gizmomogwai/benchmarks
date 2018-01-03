@@ -1,15 +1,16 @@
-- Dlang(boundscheck): Decompressing took 761 ms to 199202110 bytes
-- Dlang(noboundscheck): Decompressing took 770 ms to 199202110 bytes
-- Dlang-iopipe-direct(boundscheck): Decompressing took 883 ms to 199202110 bytes
-- Dlang-iopipe-direct(noboundscheck): Decompressing took 860 ms to 199202110 bytes
-- Dlang-iopipe-appender(boundscheck): Decompressing took 650 ms to 199202110 bytes
-- Dlang-iopipe-appender(noboundscheck): Decompressing took 623 ms to 199202110 bytes
-- Dlang-lowlevel(appender, boundscheck): Decompression took 634 ms to 199202110 bytes
-- Dlang-lowlevel(appender, noboundscheck): Decompression took 625 ms to 199202110 bytes
-- Dlang-lowlevel(fastappender, boundscheck): Decompression took 609 ms to 199202110 bytes
-- Dlang-lowlevel(fastappender, noboundscheck): Decompression took 627 ms to 199202110 bytes
-- Dlang-lowlevel(nocopy, noboundscheck): Decompression took 341 ms to 199202110 bytes
-- Java: Decompressing took 706 ms to 199202110 bytes
-- Ruby: Decompressing took 351 ms to 199202110 bytes
-- Python: Decompressing took 627 ms to 199202110 bytes
-- C: Decompressing took 277 ms to 199202110 bytes
+- Dlang(boundscheck): Decompressing took 1630 ms to 199202110 bytes
+- Dlang(noboundscheck): Decompressing took 1032 ms to 199202110 bytes
+- Dlang-iopipe-direct(boundscheck): Decompressing took 868 ms to 199202110 bytes
+- Dlang-iopipe-direct(noboundscheck): Decompressing took 861 ms to 199202110 bytes
+- Dlang-iopipe-appender(boundscheck): Decompressing took 627 ms to 199202110 bytes
+- Dlang-iopipe-appender(noboundscheck): Decompressing took 678 ms to 199202110 bytes
+- Dlang-lowlevel(appender, boundscheck): Decompression took 663 ms to 199202110 bytes
+- Dlang-lowlevel(appender, noboundscheck): Decompression took 624 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, boundscheck): Decompression took 662 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, noboundscheck): Decompression took 761 ms to 199202110 bytes
+- Dlang-lowlevel(nocopy, noboundscheck): Decompression took 401 ms to 199202110 bytes
+- Java: Decompressing took 612 ms to 199202110 bytes
+- Ruby: Decompressing took 337 ms to 199202110 bytes
+- Python: Decompressing took 693 ms to 199202110 bytes
+- C: Decompressing took 306 ms to 199202110 bytes
+- Rust: Decompressing took 869 ms to 199202110 bytes

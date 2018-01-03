@@ -1,0 +1,16 @@
+[package]
+authors = ["Felix Obenhuber <felix.obenhuber@esrlabs.com>"]
+name = "gunzip_benchmark"
+version = "0.1.0"
+
+[dependencies]
+libflate = "0.1.14"
+
+[profile.release]
+codegen-units = 1
+debug = false
+debug-assertions = false
+lto = false
+opt-level = 3
+panic = "unwind"
+rpath = false
