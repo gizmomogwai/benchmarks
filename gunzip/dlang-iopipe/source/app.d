@@ -18,6 +18,18 @@ string boundsCheck()
     }
 }
 
+string versions()
+{
+    version (Appender)
+    {
+        return "appender";
+    }
+    else
+    {
+        return "direct";
+    }
+}
+
 struct Output
 {
     auto data = appender!(ubyte[]);
@@ -37,9 +49,20 @@ void main()
 {
     // decompress the input into the output
     auto sw = StopWatch(AutoStart.yes);
-    Output o;
-    auto nbytes = openDev("../out/nist/2011.json.gz").bufd.unzip(CompressionFormat.gzip)
-        .outputPipe(o).process();
-    "- Dlang-iopipe(%s): Decompressing took %s ms to %s bytes".format(boundsCheck(),
-            sw.peek.total!("msecs"), o.data.data.length).writeln;
+    auto pipe = openDev("../out/nist/2011.json.gz").bufd.unzip(CompressionFormat.gzip);
+    version (Appender)
+    {
+        Output o;
+        pipe.outputPipe(o).process();
+        "- Dlang-iopipe-%s(%s): Decompressing took %s ms to %s bytes".format(versions(),
+                boundsCheck(), sw.peek.total!("msecs"), o.data.data.length).writeln;
+    }
+    else
+    {
+        while (pipe.extend(0) != 0)
+        {
+        }
+        "- Dlang-iopipe-%s(%s): Decompressing took %s ms to %s bytes".format(versions(),
+                boundsCheck(), sw.peek.total!("msecs"), pipe.window.length).writeln;
+    }
 }

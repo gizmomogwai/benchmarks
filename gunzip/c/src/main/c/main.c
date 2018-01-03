@@ -56,9 +56,7 @@ int main(int argc, char** args) {
 
   while (bytesRead > 0) {
     bytesRead = gzread(gzip, buffer_get(&uncompressed, 4096), 4096);
-    if (bytesRead > 0) {
-      buffer_append(&uncompressed, bytesRead);
-    }
+    buffer_append(&uncompressed, bytesRead);
   }
 
   gzclose(gzip);

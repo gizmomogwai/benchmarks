@@ -4,3 +4,13 @@ authors "Christian Köstlin"
 copyright "Copyright © 2018, Christian Köstlin"
 license "MIT"
 dependency "iopipe" version="~>0.0.2"
+
+configuration "application" {
+  targetType "executable"
+}
+
+configuration "Appender" {
+  targetType "executable"
+
+  versions "Appender"
+}

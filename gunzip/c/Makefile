@@ -1,4 +1,4 @@
-gunzip_benchmark: src/main/c/main.c
+gunzip_benchmark: src/main/c/main.c Makefile
 	gcc \
     src/main/c/main.c \
     -o $@ \

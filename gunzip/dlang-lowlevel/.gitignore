@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+dlang-lowlevel.so
+dlang-lowlevel.dylib
+dlang-lowlevel.dll
+dlang-lowlevel.a
+dlang-lowlevel.lib
+dlang-lowlevel-test-*
+*.exe
+*.o
+*.obj
+*.lst
+dlang-lowlevel

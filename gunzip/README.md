@@ -1,8 +1,15 @@
-- Dlang(boundscheck): Decompressing took 770 ms to 199202110 bytes
-- Dlang(noboundscheck): Decompressing took 782 ms to 199202110 bytes
-- Dlang-iopipe(boundscheck): Decompressing took 638 ms to 199202110 bytes
-- Dlang-iopipe(noboundscheck): Decompressing took 629 ms to 199202110 bytes
-- Java: Decompressing took 583 ms to 199202110 bytes
-- Ruby: Decompressing took 393 ms to 199202110 bytes
-- Python: Decompressing took 590 ms to 199202110 bytes
-- C: Decompressing took 256 ms to 199202110 bytes
+- Dlang(boundscheck): Decompressing took 761 ms to 199202110 bytes
+- Dlang(noboundscheck): Decompressing took 770 ms to 199202110 bytes
+- Dlang-iopipe-direct(boundscheck): Decompressing took 883 ms to 199202110 bytes
+- Dlang-iopipe-direct(noboundscheck): Decompressing took 860 ms to 199202110 bytes
+- Dlang-iopipe-appender(boundscheck): Decompressing took 650 ms to 199202110 bytes
+- Dlang-iopipe-appender(noboundscheck): Decompressing took 623 ms to 199202110 bytes
+- Dlang-lowlevel(appender, boundscheck): Decompression took 634 ms to 199202110 bytes
+- Dlang-lowlevel(appender, noboundscheck): Decompression took 625 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, boundscheck): Decompression took 609 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, noboundscheck): Decompression took 627 ms to 199202110 bytes
+- Dlang-lowlevel(nocopy, noboundscheck): Decompression took 341 ms to 199202110 bytes
+- Java: Decompressing took 706 ms to 199202110 bytes
+- Ruby: Decompressing took 351 ms to 199202110 bytes
+- Python: Decompressing took 627 ms to 199202110 bytes
+- C: Decompressing took 277 ms to 199202110 bytes

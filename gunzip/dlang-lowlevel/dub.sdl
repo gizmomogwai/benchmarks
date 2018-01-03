@@ -1,0 +1,18 @@
+name "dlang-lowlevel"
+description "gunzip with etc.c.zlib api"
+authors "Christian Köstlin"
+copyright "Copyright © 2018, Christian Köstlin"
+license "MIT"
+
+configuration "application" {
+  targetType "executable"
+  versions "Normal"
+}
+configuration "FastAppender" {
+  targetType "executable"
+  versions "FastAppender"
+}
+configuration "NoCopy" {
+  targetType "executable"
+  versions "NoCopy"
+}
