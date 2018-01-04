@@ -3,6 +3,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <string.h>
 
 struct Buffer {
   char* data;
@@ -17,8 +18,24 @@ void buffer_init(struct Buffer* buffer) {
 }
 
 void buffer_grow(struct Buffer* buffer) {
+  #ifdef VARIANT_REALLOC
+  char* old = buffer->data;
   buffer->data = realloc(buffer->data, buffer->size * 2);
+  /*
+  if (old != buffer->data) {
+    printf("did a real realloc\n");
+  } else {
+    printf("did not a real realloc\n");
+  }
+  */
+  #else
+  char* old = buffer->data;
+  buffer->data = malloc(buffer->size * 2);
+  memcpy(buffer->data, old, buffer->size);
+  free(old);
+  #endif
   buffer->size = buffer->size * 2;
+  // printf("buffer size: %ld\n", buffer->size);
 }
 
 char* buffer_get(struct Buffer* buffer, size_t minimalSize) {
@@ -68,8 +85,12 @@ int main(int argc, char** args) {
 
     timersub(&endTime, &startTime, &delta);
     ms = delta.tv_sec * 1000 + delta.tv_usec / 1000;
-
-    printf("- C: Decompressing took %ld ms to %ld bytes\n", ms, buffer_total(&uncompressed));
+    #ifdef VARIANT_REALLOC
+    #define NAME "realloc"
+    #else
+    #define NAME "malloc_free"
+    #endif
+    printf("- C(%s): Decompressing took %ld ms to %ld bytes\n", NAME, ms, buffer_total(&uncompressed));
   }
 
   return 0;

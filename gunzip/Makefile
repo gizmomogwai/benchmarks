@@ -14,7 +14,8 @@ run: out/nist/2011.json.gz
 	cd $(current_dir) && cd java && ./gradlew --quiet
 	cd $(current_dir) && cd ruby && ./gunzip_benchmark.rb
 	cd $(current_dir) && cd python && ./gunzip_benchmark.py
-	cd $(current_dir) && cd c && make clean gunzip_benchmark && ./gunzip_benchmark
+	cd $(current_dir) && cd c && make clean gunzip_benchmark_realloc && ./gunzip_benchmark_realloc
+	cd $(current_dir) && cd c && make clean gunzip_benchmark_malloc_free && ./gunzip_benchmark_malloc_free
 	cd ${current_dir} && cd rust && cargo run -q --release
 
 out/nist/2011.json.gz:
