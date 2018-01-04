@@ -1,20 +1,28 @@
+extern crate flate2;
 extern crate libflate;
 
-use std::io::Read;
+use std::fs::File;
+use std::io::BufReader;
+use std::io::{copy, Read};
+use std::time::Instant;
+
+fn run (d: &mut Box<Read>) -> u64 {
+    let start = Instant::now();
+    copy(d, &mut vec![]).expect("Failed to decode") as usize;
+    let duration = start.elapsed();
+    duration.as_secs() * 1_000 + duration.subsec_nanos() as u64 / 1000_000
+}
 
 fn main() {
-    let now = std::time::Instant::now();
-    let mut file = std::fs::File::open("../out/nist/2011.json.gz").expect("Failed to open file");
-    let mut buffer = vec!();
-    file.read_to_end(&mut buffer).expect("Failed to read file");
+    let reader = || -> BufReader<File> {
+        File::open("../out/nist/2011.json.gz")
+            .map(BufReader::new)
+            .expect("Failed to open file")
+    };
 
-    let mut input = std::io::Cursor::new(buffer);
-    let mut decoder = libflate::gzip::Decoder::new(&mut input).expect("Failed to create decoder");
-    let mut output = vec!();
+    let mut d = Box::new(libflate::gzip::Decoder::new(reader()).expect("Failed to create decoder")) as Box<Read>;
+    println!("- Rust (libflate): Decompressing took {} ms", run(&mut d));
 
-    std::io::copy(&mut decoder, &mut output).expect("Failed to decode");
-    let duration = now.elapsed();
-
-    let duration = duration.as_secs() * 1000 + (duration.subsec_nanos() / 1000_000) as u64;
-    println!("- Rust: Decompressing took {} ms to {} bytes", duration, output.len());
+    let mut d = Box::new(flate2::read::GzDecoder::new(reader())) as Box<Read>;
+    println!("- Rust (flate2 - zlib): Decompressing took {} ms", run(&mut d));
 }

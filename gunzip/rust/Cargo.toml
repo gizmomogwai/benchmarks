@@ -1,9 +1,9 @@
 [package]
-authors = ["Felix Obenhuber <felix.obenhuber@esrlabs.com>"]
 name = "gunzip_benchmark"
 version = "0.1.0"
 
 [dependencies]
+flate2 = { version = "1.0.1", features = ["zlib"], default-features = false }
 libflate = "0.1.14"
 
 [profile.release]
