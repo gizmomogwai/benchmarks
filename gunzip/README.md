@@ -1,17 +1,18 @@
-- Dlang(boundscheck): Decompressing took 901 ms to 199202110 bytes
-- Dlang(noboundscheck): Decompressing took 928 ms to 199202110 bytes
-- Dlang-iopipe-direct(boundscheck): Decompressing took 951 ms to 199202110 bytes
-- Dlang-iopipe-direct(noboundscheck): Decompressing took 968 ms to 199202110 bytes
-- Dlang-iopipe-appender(boundscheck): Decompressing took 688 ms to 199202110 bytes
-- Dlang-iopipe-appender(noboundscheck): Decompressing took 729 ms to 199202110 bytes
-- Dlang-lowlevel(appender, boundscheck): Decompression took 684 ms to 199202110 bytes
-- Dlang-lowlevel(appender, noboundscheck): Decompression took 695 ms to 199202110 bytes
-- Dlang-lowlevel(fastappender, boundscheck): Decompression took 696 ms to 199202110 bytes
-- Dlang-lowlevel(fastappender, noboundscheck): Decompression took 677 ms to 199202110 bytes
-- Dlang-lowlevel(nocopy, noboundscheck): Decompression took 433 ms to 199202110 bytes
-- Java: Decompressing took 705 ms to 199202110 bytes
-- Ruby: Decompressing took 392 ms to 199202110 bytes
-- Python: Decompressing took 686 ms to 199202110 bytes
-- C(realloc): Decompressing took 276 ms to 199202110 bytes
-- C(malloc_free): Decompressing took 449 ms to 199202110 bytes
-- Rust: Decompressing took 803 ms to 199202110 bytes
+- Dlang(boundscheck): Decompressing took 1086 ms to 199202110 bytes
+- Dlang(noboundscheck): Decompressing took 1140 ms to 199202110 bytes
+- Dlang-iopipe-direct(boundscheck): Decompressing took 1013 ms to 199202110 bytes
+- Dlang-iopipe-direct(noboundscheck): Decompressing took 966 ms to 199202110 bytes
+- Dlang-iopipe-appender(boundscheck): Decompressing took 683 ms to 199202110 bytes
+- Dlang-iopipe-appender(noboundscheck): Decompressing took 705 ms to 199202110 bytes
+- Dlang-lowlevel(appender, boundscheck): Decompression took 768 ms to 199202110 bytes
+- Dlang-lowlevel(appender, noboundscheck): Decompression took 653 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, boundscheck): Decompression took 638 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, noboundscheck): Decompression took 618 ms to 199202110 bytes
+- Dlang-lowlevel(nocopy, noboundscheck): Decompression took 333 ms to 199202110 bytes
+- Java: Decompressing took 632 ms to 199202110 bytes
+- Ruby: Decompressing took 386 ms to 199202110 bytes
+- Python: Decompressing took 945 ms to 199202110 bytes
+- C(realloc): Decompressing took 271 ms to 199202110 bytes
+- C(malloc_free): Decompressing took 441 ms to 199202110 bytes
+- Rust (libflate): Decompressing took 916 ms
+- Rust (flate2 - zlib): Decompressing took 370 ms
