@@ -5,6 +5,7 @@ import std.range;
 import std.datetime.stopwatch;
 import std.string;
 import std.stdio;
+import std.experimental.allocator.mallocator;
 
 string boundsCheck()
 {
@@ -45,24 +46,34 @@ struct Output
     }
 }
 
+string compiler()
+{
+    version (DigitalMars)
+    {
+        return "dmd";
+    }
+    version (LDC)
+    {
+        return "ldc";
+    }
+}
+
 void main()
 {
     // decompress the input into the output
     auto sw = StopWatch(AutoStart.yes);
-    auto pipe = openDev("../out/nist/2011.json.gz").bufd.unzip(CompressionFormat.gzip);
+    auto pipe = openDev("../out/nist/2011.json.gz").bufd.unzip!Mallocator(CompressionFormat.gzip);
     version (Appender)
     {
         Output o;
         pipe.outputPipe(o).process();
-        "- Dlang-iopipe-%s(%s): Decompressing took %s ms to %s bytes".format(versions(),
-                boundsCheck(), sw.peek.total!("msecs"), o.data.data.length).writeln;
+        "- Dlang-iopipe(%s, %s, %s): Decompressing took %s ms to %s bytes".format(versions(),
+                boundsCheck(), compiler(), sw.peek.total!("msecs"), o.data.data.length).writeln;
     }
     else
     {
-        while (pipe.extend(0) != 0)
-        {
-        }
-        "- Dlang-iopipe-%s(%s): Decompressing took %s ms to %s bytes".format(versions(),
-                boundsCheck(), sw.peek.total!("msecs"), pipe.window.length).writeln;
+        pipe.ensureElems();
+        "- Dlang-iopipe(%s, %s, %s): Decompressing took %s ms to %s bytes".format(versions(),
+                boundsCheck(), compiler(), sw.peek.total!("msecs"), pipe.window.length).writeln;
     }
 }

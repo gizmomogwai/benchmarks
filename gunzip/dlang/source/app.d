@@ -10,6 +10,18 @@ string boundsCheck()
     }
 }
 
+string compiler()
+{
+    version (DigitalMars)
+    {
+        return "dmd";
+    }
+    version (LDC)
+    {
+        return "ldc";
+    }
+}
+
 int main(string[] args)
 {
     import std.datetime.stopwatch;
@@ -26,7 +38,7 @@ int main(string[] args)
     res.put(cast(string) uncompress.uncompress(bytes));
     res.put(cast(string) uncompress.flush);
 
-    "- Dlang(%s): Decompressing took %s ms to %s bytes".format(boundsCheck(),
-            sw.peek.total!("msecs"), res.data.length).writeln;
+    "- Dlang(%s, %s): Decompressing took %s ms to %s bytes".format(boundsCheck(),
+            compiler(), sw.peek.total!("msecs"), res.data.length).writeln;
     return 0;
 }

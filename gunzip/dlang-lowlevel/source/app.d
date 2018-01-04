@@ -57,6 +57,18 @@ class FastAppender(T)
     }
 }
 
+string compiler()
+{
+    version (DigitalMars)
+    {
+        return "dmd";
+    }
+    version (LDC)
+    {
+        return "ldc";
+    }
+}
+
 void main()
 {
     auto sw = StopWatch(AutoStart.yes);
@@ -78,8 +90,8 @@ void main()
                 break;
         }
         while (true);
-        "- Dlang-lowlevel(%s, %s): Decompression took %s ms to %s bytes".format(versions(),
-                boundsCheck(), sw.peek.total!("msecs"), appender.total.length).writeln;
+        "- Dlang-lowlevel(%s, %s, %s): Decompression took %s ms to %s bytes".format(versions(),
+                boundsCheck(), compiler(), sw.peek.total!("msecs"), appender.total.length).writeln;
     }
     version (Normal)
     {
@@ -91,8 +103,9 @@ void main()
             uncompressed.put(buffer[0 .. res]);
             res = gzread(gzip, buffer.ptr, buffer.length);
         }
-        "- Dlang-lowlevel(%s, %s): Decompression took %s ms to %s bytes".format(versions(),
-                boundsCheck(), sw.peek.total!("msecs"), uncompressed.data.length).writeln;
+        "- Dlang-lowlevel(%s, %s, %s): Decompression took %s ms to %s bytes".format(versions(),
+                boundsCheck(), compiler(), sw.peek.total!("msecs"), uncompressed.data.length)
+            .writeln;
     }
 
     version (NoCopy)
@@ -107,8 +120,8 @@ void main()
                 break;
         }
         while (true);
-        "- Dlang-lowlevel(%s, %s): Decompression took %s ms to %s bytes".format(versions(),
-                boundsCheck(), sw.peek.total!("msecs"), total).writeln;
+        "- Dlang-lowlevel(%s, %s, %s): Decompression took %s ms to %s bytes".format(versions(),
+                boundsCheck(), compiler(), sw.peek.total!("msecs"), total).writeln;
 
     }
 }

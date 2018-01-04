@@ -1,16 +1,22 @@
 current_dir := $(shell pwd)
 run: out/nist/2011.json.gz
 	cd dlang && dub --quiet clean && dub run --quiet --build=release --compiler=ldc2
+	cd dlang && dub --quiet clean && dub run --quiet --build=release --compiler=dmd
 	cd dlang && dub --quiet clean && dub run --quiet --build=release-nobounds --compiler=ldc2
 	cd dlang-iopipe && dub --quiet clean && dub run --quiet --build=release --compiler=ldc2
+	cd dlang-iopipe && dub --quiet clean && dub run --quiet --build=release --compiler=dmd
 	cd dlang-iopipe && dub --quiet clean && dub run --quiet --build=release-nobounds --compiler=ldc2
 	cd dlang-iopipe && dub --quiet clean && dub run --config=Appender --quiet --build=release --compiler=ldc2
+	cd dlang-iopipe && dub --quiet clean && dub run --config=Appender --quiet --build=release --compiler=dmd
 	cd dlang-iopipe && dub --quiet clean && dub run --config=Appender --quiet --build=release-nobounds --compiler=ldc2
 	cd dlang-lowlevel && dub --quiet clean && dub run --quiet --build=release --compiler=ldc2
+	cd dlang-lowlevel && dub --quiet clean && dub run --quiet --build=release --compiler=dmd
 	cd dlang-lowlevel && dub --quiet clean && dub run --quiet --build=release-nobounds --compiler=ldc2
 	cd dlang-lowlevel && dub --quiet clean && dub run --config=FastAppender --quiet --build=release --compiler=ldc2
+	cd dlang-lowlevel && dub --quiet clean && dub run --config=FastAppender --quiet --build=release --compiler=dmd
 	cd dlang-lowlevel && dub --quiet clean && dub run --config=FastAppender --quiet --build=release-nobounds --compiler=ldc2
 	cd dlang-lowlevel && dub --quiet clean && dub run --config=NoCopy --quiet --build=release-nobounds --compiler=ldc2
+	cd dlang-lowlevel && dub --quiet clean && dub run --config=NoCopy --quiet --build=release-nobounds --compiler=dmd
 	cd $(current_dir) && cd java && ./gradlew --quiet
 	cd $(current_dir) && cd ruby && ./gunzip_benchmark.rb
 	cd $(current_dir) && cd python && ./gunzip_benchmark.py
