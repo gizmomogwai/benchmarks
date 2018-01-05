@@ -20,20 +20,46 @@ string boundsCheck()
 string versions()
 {
     version (FastAppender)
-        return "fastappender";
+    {
+        version (Mallocator)
+        {
+            return "fastappender+mallocator";
+        }
+        else
+        {
+            return "fastappender";
+        }
+    }
     version (Normal)
+    {
         return "appender";
+    }
     version (NoCopy)
+    {
         return "nocopy";
+    }
 }
 
+version (Mallocator)
+{
+    import std.experimental.allocator;
+    import std.experimental.allocator.mallocator;
+}
+enum PAGE_SIZE = 1024 * 16;
 class FastAppender(T)
 {
     T[] data;
     size_t offset;
     this()
     {
-        data = new T[4096];
+        version (Mallocator)
+        {
+            data = Mallocator.instance.makeArray!ubyte(PAGE_SIZE);
+        }
+        else
+        {
+            data = new ubyte[PAGE_SIZE];
+        }
         offset = 0;
     }
 
@@ -41,7 +67,17 @@ class FastAppender(T)
     {
         while (data.length - offset < space)
         {
-            data.length *= 2;
+            version (Mallocator)
+            {
+                void[] h = data;
+                Mallocator.instance.reallocate(h, cast(size_t)(data.length * 2));
+                data = cast(ubyte[]) h;
+            }
+            else
+            {
+                data.length *= 2;
+            }
+
         }
         return data[offset .. $];
     }
@@ -83,7 +119,7 @@ void main()
 
         do
         {
-            auto buffer = appender.reserve(4096);
+            auto buffer = appender.reserve(PAGE_SIZE);
             auto res = gzread(gzip, buffer.ptr, cast(uint) buffer.length);
             appender.consume(res);
             if (res == 0)
@@ -95,7 +131,7 @@ void main()
     }
     version (Normal)
     {
-        ubyte[4096] buffer;
+        ubyte[PAGE_SIZE] buffer;
         auto res = gzread(gzip, buffer.ptr, buffer.length);
         auto uncompressed = appender!(ubyte[]);
         while (res > 0)
@@ -111,7 +147,7 @@ void main()
     version (NoCopy)
     {
         int total = 0;
-        ubyte[4096] buffer;
+        ubyte[PAGE_SIZE] buffer;
         do
         {
             auto res = gzread(gzip, buffer.ptr, buffer.length);

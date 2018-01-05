@@ -13,8 +13,10 @@ run: out/nist/2011.json.gz
 	cd dlang-lowlevel && dub --quiet clean && dub run --quiet --build=release --compiler=dmd
 	cd dlang-lowlevel && dub --quiet clean && dub run --quiet --build=release-nobounds --compiler=ldc2
 	cd dlang-lowlevel && dub --quiet clean && dub run --config=FastAppender --quiet --build=release --compiler=ldc2
+	cd dlang-lowlevel && dub --quiet clean && dub run --config=FastAppenderMallocator --quiet --build=release --compiler=ldc2
 	cd dlang-lowlevel && dub --quiet clean && dub run --config=FastAppender --quiet --build=release --compiler=dmd
 	cd dlang-lowlevel && dub --quiet clean && dub run --config=FastAppender --quiet --build=release-nobounds --compiler=ldc2
+	cd dlang-lowlevel && dub --quiet clean && dub run --config=FastAppenderMallocator --quiet --build=release-nobounds --compiler=ldc2
 	cd dlang-lowlevel && dub --quiet clean && dub run --config=NoCopy --quiet --build=release-nobounds --compiler=ldc2
 	cd dlang-lowlevel && dub --quiet clean && dub run --config=NoCopy --quiet --build=release-nobounds --compiler=dmd
 	cd $(current_dir) && cd java && ./gradlew --quiet

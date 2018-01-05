@@ -1,24 +1,26 @@
-- Dlang(boundscheck, ldc): Decompressing took 900 ms to 199202110 bytes
-- Dlang(boundscheck, dmd): Decompressing took 812 ms to 199202110 bytes
-- Dlang(noboundscheck, ldc): Decompressing took 889 ms to 199202110 bytes
-- Dlang-iopipe(direct, boundscheck, ldc): Decompressing took 436 ms to 199202110 bytes
-- Dlang-iopipe(direct, boundscheck, dmd): Decompressing took 437 ms to 199202110 bytes
-- Dlang-iopipe(direct, noboundscheck, ldc): Decompressing took 432 ms to 199202110 bytes
-- Dlang-iopipe(appender, boundscheck, ldc): Decompressing took 664 ms to 199202110 bytes
-- Dlang-iopipe(appender, boundscheck, dmd): Decompressing took 660 ms to 199202110 bytes
-- Dlang-iopipe(appender, noboundscheck, ldc): Decompressing took 684 ms to 199202110 bytes
-- Dlang-lowlevel(appender, boundscheck, ldc): Decompression took 669 ms to 199202110 bytes
-- Dlang-lowlevel(appender, boundscheck, dmd): Decompression took 694 ms to 199202110 bytes
-- Dlang-lowlevel(appender, noboundscheck, ldc): Decompression took 695 ms to 199202110 bytes
-- Dlang-lowlevel(fastappender, boundscheck, ldc): Decompression took 661 ms to 199202110 bytes
-- Dlang-lowlevel(fastappender, boundscheck, dmd): Decompression took 679 ms to 199202110 bytes
-- Dlang-lowlevel(fastappender, noboundscheck, ldc): Decompression took 658 ms to 199202110 bytes
-- Dlang-lowlevel(nocopy, noboundscheck, ldc): Decompression took 349 ms to 199202110 bytes
-- Dlang-lowlevel(nocopy, noboundscheck, dmd): Decompression took 364 ms to 199202110 bytes
-- Java: Decompressing took 609 ms to 199202110 bytes
-- Ruby: Decompressing took 342 ms to 199202110 bytes
-- Python: Decompressing took 621 ms to 199202110 bytes
-- C(realloc): Decompressing took 284 ms to 199202110 bytes
-- C(malloc_free): Decompressing took 441 ms to 199202110 bytes
-- Rust (libflate): Decompressing took 908 ms to 199202110 bytes
-- Rust (flate2 - zlib): Decompressing took 363 ms to 199202110 bytes
+- Dlang(boundscheck, ldc): Decompressing took 747 ms to 199202110 bytes
+- Dlang(boundscheck, dmd): Decompressing took 753 ms to 199202110 bytes
+- Dlang(noboundscheck, ldc): Decompressing took 737 ms to 199202110 bytes
+- Dlang-iopipe(direct, boundscheck, ldc): Decompressing took 415 ms to 199202110 bytes
+- Dlang-iopipe(direct, boundscheck, dmd): Decompressing took 423 ms to 199202110 bytes
+- Dlang-iopipe(direct, noboundscheck, ldc): Decompressing took 418 ms to 199202110 bytes
+- Dlang-iopipe(appender, boundscheck, ldc): Decompressing took 632 ms to 199202110 bytes
+- Dlang-iopipe(appender, boundscheck, dmd): Decompressing took 639 ms to 199202110 bytes
+- Dlang-iopipe(appender, noboundscheck, ldc): Decompressing took 622 ms to 199202110 bytes
+- Dlang-lowlevel(appender, boundscheck, ldc): Decompression took 626 ms to 199202110 bytes
+- Dlang-lowlevel(appender, boundscheck, dmd): Decompression took 636 ms to 199202110 bytes
+- Dlang-lowlevel(appender, noboundscheck, ldc): Decompression took 635 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, boundscheck, ldc): Decompression took 607 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender+mallocator, boundscheck, ldc): Decompression took 433 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, boundscheck, dmd): Decompression took 612 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender, noboundscheck, ldc): Decompression took 608 ms to 199202110 bytes
+- Dlang-lowlevel(fastappender+mallocator, noboundscheck, ldc): Decompression took 423 ms to 199202110 bytes
+- Dlang-lowlevel(nocopy, noboundscheck, ldc): Decompression took 339 ms to 199202110 bytes
+- Dlang-lowlevel(nocopy, noboundscheck, dmd): Decompression took 341 ms to 199202110 bytes
+- Java: Decompressing took 571 ms to 199202110 bytes
+- Ruby: Decompressing took 318 ms to 199202110 bytes
+- Python: Decompressing took 573 ms to 199202110 bytes
+- C(realloc): Decompressing took 261 ms to 199202110 bytes
+- C(malloc_free): Decompressing took 422 ms to 199202110 bytes
+- Rust (libflate): Decompressing took 827 ms to 199202110 bytes
+- Rust (flate2 - zlib): Decompressing took 305 ms to 199202110 bytes

@@ -8,6 +8,10 @@ configuration "application" {
   targetType "executable"
   versions "Normal"
 }
+configuration "FastAppenderMallocator" {
+  targetType "executable"
+  versions "FastAppender" "Mallocator"
+}
 configuration "FastAppender" {
   targetType "executable"
   versions "FastAppender"
