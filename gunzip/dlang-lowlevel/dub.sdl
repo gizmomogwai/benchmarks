@@ -20,3 +20,7 @@ configuration "NoCopy" {
   targetType "executable"
   versions "NoCopy"
 }
+configuration "Preallocated" {
+  targetType "executable"
+  versions "Preallocated"
+}

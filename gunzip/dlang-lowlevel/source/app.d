@@ -38,6 +38,10 @@ string versions()
     {
         return "nocopy";
     }
+    version (Preallocated)
+    {
+        return "preallocated";
+    }
 }
 
 version (Mallocator)
@@ -159,5 +163,19 @@ void main()
         "- Dlang-lowlevel(%s, %s, %s): Decompression took %s ms to %s bytes".format(versions(),
                 boundsCheck(), compiler(), sw.peek.total!("msecs"), total).writeln;
 
+    }
+
+    version (Preallocated)
+    {
+        ubyte[] buffer = new ubyte[200*1024*1024];
+        int offset = 0;
+        int read = 0;
+        do {
+            read = gzread(gzip, cast(void*)(buffer.ptr+offset), cast(uint)buffer.length);
+            offset += read;
+        } while (read > 0);
+
+        "- Dlang-lowlevel(%s, %s, %s): Decompression took %s ms to %s bytes".format(versions(),
+                boundsCheck(), compiler(), sw.peek.total!("msecs"), offset).writeln;
     }
 }

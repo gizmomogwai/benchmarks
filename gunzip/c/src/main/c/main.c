@@ -5,15 +5,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define CHUNK_SIZE 8192
+
 struct Buffer {
   char* data;
   size_t size;
   size_t offset;
 };
 
-void buffer_init(struct Buffer* buffer) {
-  buffer->data = malloc(4*1024);
-  buffer->size = 4*1024;
+void buffer_init(struct Buffer* buffer, size_t initialSize) {
+  buffer->data = (char*)malloc(initialSize);
+  buffer->size = initialSize;
   buffer->offset = 0;
 }
 
@@ -55,8 +57,7 @@ size_t buffer_total(struct Buffer* buffer) {
 
 int main(int argc, char** args) {
   gzFile gzip;
-  char buffer[4096];
-  z_size_t bytesRead;
+  int bytesRead;
   int res;
   struct timeval startTime;
   struct timeval endTime;
@@ -64,17 +65,25 @@ int main(int argc, char** args) {
 
   res = gettimeofday(&startTime, 0);
 
-  buffer_init(&uncompressed);
+#ifdef VARIANT_PREALLOCATED
+  buffer_init(&uncompressed, 200*1024*1024);
+#else
+  buffer_init(&uncompressed, CHUNK_SIZE);
+#endif
 
   gzip = gzopen("../out/nist/2011.json.gz", "rb");
 
-  bytesRead = gzread(gzip, buffer_get(&uncompressed, 4096), 4096);
-  buffer_append(&uncompressed, bytesRead);
-
-  while (bytesRead > 0) {
-    bytesRead = gzread(gzip, buffer_get(&uncompressed, 4096), 4096);
+  do {
+#ifdef VARIANT_PREALLOCATED
+    bytesRead = gzread(gzip, buffer_get(&uncompressed, 200*1024*1024), 200*1024*1024);
+#else
+    bytesRead = gzread(gzip, buffer_get(&uncompressed, CHUNK_SIZE), CHUNK_SIZE);
+#endif
     buffer_append(&uncompressed, bytesRead);
-  }
+#ifdef VARIANT_PREALLOCATED
+    break;
+#endif
+  } while (bytesRead > 0);
 
   gzclose(gzip);
 
@@ -88,7 +97,11 @@ int main(int argc, char** args) {
     #ifdef VARIANT_REALLOC
     #define NAME "realloc"
     #else
+    #ifdef VARIANT_PREALLOCATED
+    #define NAME "preallocated"
+    #else
     #define NAME "malloc_free"
+    #endif
     #endif
     printf("- C(%s): Decompressing took %ld ms to %ld bytes\n", NAME, ms, buffer_total(&uncompressed));
   }
